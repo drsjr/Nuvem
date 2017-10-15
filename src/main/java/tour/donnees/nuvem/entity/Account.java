@@ -31,9 +31,8 @@ public class Account {
 	@Column(name="status")
 	private Boolean status;
 	
-	@Column(name="person")
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_person", insertable=false, updatable=false)
+	@JoinColumn(name="id_person")
 	private Person person;
 
 	public Long getIdAccount() {
@@ -76,14 +75,12 @@ public class Account {
 		this.status = status;
 	}
 
-//	public Person getPerson() {
-//		return person;
-//	}
-//
-//	public void setPerson(Person person) {
-//		this.person = person;
-//	}
-	
-	
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 	
 }

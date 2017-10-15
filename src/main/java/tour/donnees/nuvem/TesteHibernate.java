@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import tour.donnees.nuvem.entity.Account;
+import tour.donnees.nuvem.entity.Album;
+import tour.donnees.nuvem.entity.Artist;
 import tour.donnees.nuvem.entity.Person;
 
 public class TesteHibernate {
@@ -21,9 +23,9 @@ public class TesteHibernate {
 		
 		Session session = getSessionFactory().openSession();
 		
-		session.beginTransaction();
+//		session.beginTransaction();
 		
-		Person p = new Person();
+		/*Person p = new Person();
 		
 		p.setName("Mateus");
 		p.setSex('M');
@@ -31,7 +33,34 @@ public class TesteHibernate {
 		p.getLikes().add("Rock");
 		p.getLikes().add("Indie");
 		p.getLikes().add("Folk");
-		session.save(p);
+		
+		Account a = new Account();
+		a.setEmail("drsjr@servicemusic.com");
+		a.setLogin("drsjr");
+		a.setPassword("123456");
+		a.setStatus(true);
+		a.setPerson(p);
+		
+		session.save(a);*/
+		
+//		Account account = session.get(Account.class, 1L);
+//		 
+//		System.out.println("Name: " + account.getPerson().getName() + " Login: " + account.getLogin());
+		
+		
+		session.beginTransaction();
+		
+		Artist art = new Artist();
+		art.setName("Metallica");
+		
+		
+		Album ab1 = new Album();
+		ab1.setTitle("Black Album");
+		ab1.setArtist(art);
+		
+		art.getAlbum().add(ab1);
+		
+		session.save(art);
 		
 		session.getTransaction().commit();
 

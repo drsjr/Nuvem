@@ -1,12 +1,13 @@
 package tour.donnees.nuvem.entity;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,12 +19,39 @@ public class Album {
 	@Column(name="id_album")
 	private Long idAlbum;
 	
-	@Column(name="name")
-	private String name;
+	@Column(name="title")
+	private String title;
 	
-	@Column(name="artist")
+	@ManyToOne
+	@JoinColumn(name="id_artist")
 	private Artist artist;
+
+//	@Column(name="music")
+//	private List<Music> music;
+
 	
-	@Column(name="music")
-	private List<Music> music;
+	public Long getIdAlbum() {
+		return idAlbum;
+	}
+
+	public void setIdAlbum(Long idAlbum) {
+		this.idAlbum = idAlbum;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+	
 }

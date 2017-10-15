@@ -29,10 +29,11 @@
         <property name="hbm2ddl.auto">update</property>
         
         <mapping class="tour.donnees.nuvem.entity.Person"/>
-<!--         <mapping class="tour.donnees.nuvem.entity.Account"/> -->
+        <mapping class="tour.donnees.nuvem.entity.Account"/>
         
-<!--         <mapping class="tour.donnees.nuvem.entity.Album"/> -->
-<!--         <mapping class="tour.donnees.nuvem.entity.Artist"/> -->
+        <mapping class="tour.donnees.nuvem.entity.Album"/>
+        <mapping class="tour.donnees.nuvem.entity.Artist"/>
+        
 <!--         <mapping class="tour.donnees.nuvem.entity.Music"/> -->
 <!--         <mapping class="tour.donnees.nuvem.entity.PlayList"/> -->
 
