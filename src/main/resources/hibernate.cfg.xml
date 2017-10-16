@@ -34,8 +34,8 @@
         <mapping class="tour.donnees.nuvem.entity.Album"/>
         <mapping class="tour.donnees.nuvem.entity.Artist"/>
         
-<!--         <mapping class="tour.donnees.nuvem.entity.Music"/> -->
-<!--         <mapping class="tour.donnees.nuvem.entity.PlayList"/> -->
+        <mapping class="tour.donnees.nuvem.entity.Music"/>
+        <mapping class="tour.donnees.nuvem.entity.PlayList"/>
 
     </session-factory>
 

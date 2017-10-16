@@ -1,7 +1,5 @@
 package tour.donnees.nuvem.entity;
 
-import javax.persistence.Column;
-
 public class MusicAccount {
 
 	/*@Column(name="music")

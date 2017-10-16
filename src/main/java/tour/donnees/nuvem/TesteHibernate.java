@@ -1,7 +1,5 @@
 package tour.donnees.nuvem;
 
-import java.util.Date;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,15 +7,16 @@ import org.hibernate.cfg.Configuration;
 
 import tour.donnees.nuvem.entity.Account;
 import tour.donnees.nuvem.entity.Album;
-import tour.donnees.nuvem.entity.Artist;
+import tour.donnees.nuvem.entity.Music;
 import tour.donnees.nuvem.entity.Person;
+import tour.donnees.nuvem.entity.PlayList;
 
 public class TesteHibernate {
 
 	private static SessionFactory factory = buildSessionFactory();
 
 	
-	public static void main(String... args) throws IllegalStateException {
+	public static void main(String... args) throws IllegalStateException, NumberFormatException {
 		
 		TesteHibernate teste = new TesteHibernate();
 		
@@ -50,17 +49,41 @@ public class TesteHibernate {
 		
 		session.beginTransaction();
 		
-		Artist art = new Artist();
-		art.setName("Metallica");
+//		Artist art = new Artist();
+//		art.setName("Metallica");
+//		Album ab1 = new Album();
+//		ab1.setTitle("Black Album");
+//		ab1.setArtist(art);
+//		art.getAlbum().add(ab1);
+//		session.save(art);
+		
+		Album BlackAlbum = (Album) session.get(Album.class, 2L);
+		
+//		Long l = new Long("10");
+//		
+//		Music music = new Music();
+//		
+//		music.setTitle("Fade to Black");
+//		music.setDuration(l);
+//		music.setGenre("Metal");
+//		music.setSize(l);
+//		music.setYear(1980);
+//		music.setAlbum(BlackAlbum);
+//		
+//		
+//		
+		
+		Account account = session.get(Account.class, 1L);
+		Music music = session.get(Music.class, 2L);
+
+//		PlayList play = new PlayList();
+//		play.setName("Sometime");
+//		
+//		account.getPlaylist().add(play);
+		account.getPlaylist().get(0).getMusics().add(music);
 		
 		
-		Album ab1 = new Album();
-		ab1.setTitle("Black Album");
-		ab1.setArtist(art);
-		
-		art.getAlbum().add(ab1);
-		
-		session.save(art);
+		session.save(account);
 		
 		session.getTransaction().commit();
 
@@ -99,6 +122,19 @@ public class TesteHibernate {
 		ac.setStatus(true);
 		
 		return ac;
+		
+	}
+	
+	public static Music autoMusic(Music music) {
+		
+		
+		music.setTitle("Fade to Black");
+		music.setDuration(new Long("2345.7463"));
+		music.setGenre("Metal");
+		music.setSize(new Long("200000"));
+		music.setYear(1980);
+		
+		return music;
 		
 	}
 	

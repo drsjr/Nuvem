@@ -1,5 +1,8 @@
 package tour.donnees.nuvem.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,6 +38,11 @@ public class Account {
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_person")
 	private Person person;
+	
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_playlist", nullable=true)
+	private List<PlayList> playlist = new ArrayList<>();
 
 	public Long getIdAccount() {
 		return idAccount;
@@ -81,6 +90,14 @@ public class Account {
 
 	public void setPerson(Person person) {
 		this.person = person;
+	}
+
+	public List<PlayList> getPlaylist() {
+		return playlist;
+	}
+
+	public void setPlaylist(List<PlayList> playlist) {
+		this.playlist = playlist;
 	}
 	
 }
