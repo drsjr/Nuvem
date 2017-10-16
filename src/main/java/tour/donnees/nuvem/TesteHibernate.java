@@ -43,11 +43,12 @@ public class TesteHibernate {
 		session.save(a);*/
 		
 //		Account account = session.get(Account.class, 1L);
-//		 
+//		  
 //		System.out.println("Name: " + account.getPerson().getName() + " Login: " + account.getLogin());
 		
 		
 		session.beginTransaction();
+		
 		
 //		Artist art = new Artist();
 //		art.setName("Metallica");
