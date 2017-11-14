@@ -5,49 +5,51 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import tour.donnees.nuvem.dao.AccountDAO;
 import tour.donnees.nuvem.entity.Account;
-import tour.donnees.nuvem.entity.Album;
 import tour.donnees.nuvem.entity.Music;
 import tour.donnees.nuvem.entity.Person;
-import tour.donnees.nuvem.entity.PlayList;
 
 public class TesteHibernate {
 
 	private static SessionFactory factory = buildSessionFactory();
 
 	
-	public static void main(String... args) throws IllegalStateException, NumberFormatException {
+	public static void main_(String... args) throws IllegalStateException, NumberFormatException {
 		
 		TesteHibernate teste = new TesteHibernate();
 		
 		Session session = getSessionFactory().openSession();
 		
-//		session.beginTransaction();
+		AccountDAO dao = AccountDAO.getInstance(session);
 		
-		/*Person p = new Person();
+//		Person p = new Person();
+//		
+//		p.setName("Manuel");
+//		p.setSex('M');
+//		p.setBirthDay(new Date());
+//		p.getLikes().add("Rock");
+//		p.getLikes().add("Indie");
+//		p.getLikes().add("Folk");
+//		
+//		Account a = new Account();
+//		a.setEmail("manuelt@servicemusic.com");
+//		a.setLogin("mnuel");
+//		a.setPassword("123456");
+//		a.setStatus(true);
+//		a.setPerson(p);
 		
-		p.setName("Mateus");
-		p.setSex('M');
-		p.setBirthDay(new Date());
-		p.getLikes().add("Rock");
-		p.getLikes().add("Indie");
-		p.getLikes().add("Folk");
+		Account a1 = dao.getById(3L);
 		
-		Account a = new Account();
-		a.setEmail("drsjr@servicemusic.com");
-		a.setLogin("drsjr");
-		a.setPassword("123456");
-		a.setStatus(true);
-		a.setPerson(p);
+		System.out.println("id:" + a1.getIdAccount());
 		
-		session.save(a);*/
 		
 //		Account account = session.get(Account.class, 1L);
 //		  
 //		System.out.println("Name: " + account.getPerson().getName() + " Login: " + account.getLogin());
 		
 		
-		session.beginTransaction();
+//		session.beginTransaction();
 		
 		
 //		Artist art = new Artist();
@@ -58,7 +60,7 @@ public class TesteHibernate {
 //		art.getAlbum().add(ab1);
 //		session.save(art);
 		
-		Album BlackAlbum = (Album) session.get(Album.class, 2L);
+//		Album BlackAlbum = (Album) session.get(Album.class, 2L);
 		
 //		Long l = new Long("10");
 //		
@@ -74,19 +76,19 @@ public class TesteHibernate {
 //		
 //		
 		
-		Account account = session.get(Account.class, 1L);
-		Music music = session.get(Music.class, 2L);
+//		Account account = session.get(Account.class, 1L);
+//		Music music = session.get(Music.class, 2L);
 
 //		PlayList play = new PlayList();
 //		play.setName("Sometime");
 //		
 //		account.getPlaylist().add(play);
-		account.getPlaylist().get(0).getMusics().add(music);
+//		account.getPlaylist().get(0).getMusics().add(music);
 		
 		
-		session.save(account);
+//		session.save(account);
 		
-		session.getTransaction().commit();
+//		session.getTransaction().commit();
 
 
 	}

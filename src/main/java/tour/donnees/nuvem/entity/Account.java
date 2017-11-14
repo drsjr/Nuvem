@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class Account {
 	private Person person;
 	
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="id_playlist", nullable=true)
 	private List<PlayList> playlist = new ArrayList<>();
 
@@ -99,5 +100,13 @@ public class Account {
 	public void setPlaylist(List<PlayList> playlist) {
 		this.playlist = playlist;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [idAccount=" + idAccount + ", login=" + login + ", password=" + password + ", email=" + email
+				+ ", status=" + status + ", person=" + person + ", playlist=" + playlist + "]";
+	}
+	
+	
 	
 }
