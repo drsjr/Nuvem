@@ -1,5 +1,7 @@
 package tour.donnees.nuvem;
 
+import java.util.Date;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,42 +11,29 @@ import tour.donnees.nuvem.dao.AccountDAO;
 import tour.donnees.nuvem.entity.Account;
 import tour.donnees.nuvem.entity.Music;
 import tour.donnees.nuvem.entity.Person;
+import tour.donnees.nuvem.entity.PlayList;
 
 public class TesteHibernate {
 
 	private static SessionFactory factory = buildSessionFactory();
 
 	
-	public static void main_(String... args) throws IllegalStateException, NumberFormatException {
+	public static void main(String... args) throws IllegalStateException, NumberFormatException {
 		
 		TesteHibernate teste = new TesteHibernate();
 		
 		Session session = getSessionFactory().openSession();
 		
 		AccountDAO dao = AccountDAO.getInstance(session);
+	
 		
-//		Person p = new Person();
-//		
-//		p.setName("Manuel");
-//		p.setSex('M');
-//		p.setBirthDay(new Date());
-//		p.getLikes().add("Rock");
-//		p.getLikes().add("Indie");
-//		p.getLikes().add("Folk");
-//		
-//		Account a = new Account();
-//		a.setEmail("manuelt@servicemusic.com");
-//		a.setLogin("mnuel");
-//		a.setPassword("123456");
-//		a.setStatus(true);
-//		a.setPerson(p);
+		Account account = session.get(Account.class, 1l);
 		
-		Account a1 = dao.getById(3L);
+		PlayList play = new PlayList();
+		play.setName("Sometimes");
+		account.getPlaylist().add(play);
 		
-		System.out.println("id:" + a1.getIdAccount());
-		
-		
-//		Account account = session.get(Account.class, 1L);
+		dao.updateObject(account, account.getIdAccount());
 //		  
 //		System.out.println("Name: " + account.getPerson().getName() + " Login: " + account.getLogin());
 		

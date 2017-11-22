@@ -40,17 +40,17 @@ public abstract class GenericDAO<T> implements Entity<T> {
 
 	@Override
 	public T updateObject(T e, Long id) {
-		
-		getSession().update(e);
-		getSession().persist(e);
-		
+		getSession().beginTransaction();
+		getSession().saveOrUpdate(e);
+		getSession().getTransaction().commit();
 		return e;
 	}
 	@Override
 	public T deleteObject(Long id) {
 		T e = getSession().get(getEntity(), id);
-		getSession().delete(e);
-		getSession().persist(e);
+		getSession().beginTransaction();
+		getSession().delete(e);;
+		getSession().getTransaction().commit();
 		return e;
 	}
 	

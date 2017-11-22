@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,14 +27,26 @@ public class Album {
 	@Column(name="title")
 	private String title;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_artist")
 	private Artist artist;
 
-	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="album")
 	private List<Music> music = new ArrayList<>();
 
+	public Album(String title, Artist artist){
+		this.title = title;
+		this.artist = artist;
+	}
+	
+	public Album(String title, Artist artist, List<Music> music){
+		this(title, artist);
+		this.music = music;
+	}
+	
+	public Album() {
+		
+	}
 	
 	public Long getIdAlbum() {
 		return idAlbum;

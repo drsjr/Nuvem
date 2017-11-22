@@ -1,8 +1,7 @@
 package tour.donnees.nuvem.resource;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -19,20 +18,15 @@ import tour.donnees.nuvem.entity.Account;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AccountResource {
 	
-	private AccountController controller = new AccountController();;
+	private AccountController controller = new AccountController();
+	
+	private PlayListResource  playlist;
 	
 	@GET
 	@Path("/{accountId}")
 	public Account getById(@PathParam("accountId") Long id) {
 		Account acc = controller.accountById(id);
 		return acc;
-	}
-	
-	@GET
-	@Path("/{accountId}/likes")
-	public List<String> getLikesById(@PathParam("accountId") Long id) {
-		List<String> likes = controller.getLikesById(id);
-		return likes;
 	}
 	
 	@POST
@@ -45,5 +39,21 @@ public class AccountResource {
 	public Account updateAccount(Account account, @PathParam("accountId") Long id){
 		return controller.updateAccount(account, id);
 	}
+	
+	@DELETE
+	@Path("/{accountId}")
+	public Account deleteAccount(@PathParam("accountId") Long id) {
+		return controller.deleteAccount(id);
+	}
+	
+	@Path("/{accountId}/playlist")
+	public PlayListResource getPlayList(@PathParam("accountId") Long id) {
+		if(playlist != null) {
+			playlist = new PlayListResource();
+		}
+
+		return new PlayListResource();
+	}
+	
 
 }
