@@ -1,5 +1,7 @@
 package tour.donnees.nuvem.controller;
 
+import java.util.List;
+
 import tour.donnees.nuvem.TesteHibernate;
 import tour.donnees.nuvem.dao.AccountDAO;
 import tour.donnees.nuvem.entity.Account;
@@ -10,6 +12,10 @@ public class AccountController {
 	
 	public AccountController() {
 		this.dao = AccountDAO.getInstance(TesteHibernate.getSessionFactory().openSession());
+	}
+	
+	public List<Account> getAll() {
+		return dao.getAll();
 	}
 	
 	public Account accountById(Long id){

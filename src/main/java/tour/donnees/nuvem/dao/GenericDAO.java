@@ -1,9 +1,10 @@
 package tour.donnees.nuvem.dao;
 
 
-import java.util.Collection;
+import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import tour.donnees.nuvem.dao.repository.Entity;
 
@@ -20,9 +21,10 @@ public abstract class GenericDAO<T> implements Entity<T> {
 	}
 	
 	@Override
-	public Collection<T> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<T> getAll() {
+		@SuppressWarnings("unchecked")
+		Query<T> query = getSession().createQuery("select t from " + entity.getSimpleName() + " t");
+		return query.list();
 	}
 
 	@Override

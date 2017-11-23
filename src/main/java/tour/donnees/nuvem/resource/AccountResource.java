@@ -1,5 +1,7 @@
 package tour.donnees.nuvem.resource;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,6 +23,13 @@ public class AccountResource {
 	private AccountController controller = new AccountController();
 	
 	private PlayListResource  playlist;
+	
+	@GET
+	public List<Account> getAll() {
+		List<Account> acc = controller.getAll();
+		return acc;
+	}
+	
 	
 	@GET
 	@Path("/{accountId}")
