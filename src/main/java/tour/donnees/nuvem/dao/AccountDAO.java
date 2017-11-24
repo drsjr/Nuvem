@@ -3,11 +3,9 @@ package tour.donnees.nuvem.dao;
 import org.hibernate.Session;
 
 import tour.donnees.nuvem.dao.repository.AccountImpl;
-import tour.donnees.nuvem.dao.repository.Entity;
 import tour.donnees.nuvem.entity.Account;
 
-public class AccountDAO extends GenericDAO<Account> 
-	implements AccountImpl<Account>, Entity<Account> {
+public class AccountDAO extends GenericDAO<Account> implements AccountImpl<Account>{
 	
 	private static AccountDAO dao;
 

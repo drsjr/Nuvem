@@ -2,7 +2,7 @@ package tour.donnees.nuvem.dao.repository;
 
 import java.util.Collection;
 
-public interface Entity<T> {
+public interface Entity<T>{
 	
 	Collection<T> getAll();
 	
@@ -14,5 +14,4 @@ public interface Entity<T> {
 	
 	T deleteObject(Long id);
 	
-
 }
